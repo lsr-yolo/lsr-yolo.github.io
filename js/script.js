@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function initializeTheme() {
     const storedTheme = localStorage.getItem('theme');
     
-    if (storedTheme === 'light') {
-      htmlElement.classList.remove('dark');
-      updateToggleButton(false);
-    } else {
+    if (storedTheme === 'dark') {
       htmlElement.classList.add('dark');
       updateToggleButton(true);
+    } else {
+      htmlElement.classList.remove('dark');
+      updateToggleButton(false);
     }
   }
 
@@ -63,4 +63,62 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initializeTheme();
+
+  const slides = document.querySelectorAll('.gallery-slide');
+  const dotsContainer = document.querySelector('.gallery-dots');
+  const prevBtn = document.querySelector('.gallery-nav-prev');
+  const nextBtn = document.querySelector('.gallery-nav-next');
+  let currentSlide = 0;
+  let autoPlayInterval;
+
+  if (slides.length > 0 && dotsContainer) {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.classList.add('gallery-dot');
+      if (i === 0) dot.classList.add('active');
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll('.gallery-dot');
+
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+      resetAutoPlay();
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoPlay() {
+      clearInterval(autoPlayInterval);
+      startAutoPlay();
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    startAutoPlay();
+
+    const galleryContainer = document.querySelector('.gallery-container');
+    galleryContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+    galleryContainer.addEventListener('mouseleave', startAutoPlay);
+
+    galleryContainer.addEventListener('touchstart', () => clearInterval(autoPlayInterval), { passive: true });
+    galleryContainer.addEventListener('touchend', () => startAutoPlay(), { passive: true });
+  }
 });
