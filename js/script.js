@@ -64,6 +64,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initializeTheme();
 
+  fetch('blogs.xml')
+    .then(response => response.text())
+    .then(xmlText => {
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(xmlText, 'text/xml');
+      const blogs = xml.querySelectorAll('blog');
+      const container = document.getElementById('blogsList');
+
+      blogs.forEach((blog, i) => {
+        const text = blog.querySelector('text').textContent;
+        const url = blog.querySelector('url').textContent;
+        const card = document.createElement('a');
+        card.href = url;
+        card.target = '_blank';
+        card.rel = 'noopener';
+        card.className = 'blog-card';
+        card.innerHTML = `
+          <div class="blog-card-icon">📝</div>
+          <h3>${text}</h3>
+          <span class="blog-link">Read on Blogger →</span>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(() => {
+      document.getElementById('blogsList').innerHTML = '<p style="color:var(--color-text-secondary)">Blogs coming soon.</p>';
+    });
+
   const slides = document.querySelectorAll('.gallery-slide');
   const dotsContainer = document.querySelector('.gallery-dots');
   const prevBtn = document.querySelector('.gallery-nav-prev');

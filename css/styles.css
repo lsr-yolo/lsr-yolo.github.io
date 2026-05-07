@@ -542,7 +542,136 @@ body {
 }
 
 /* ====================================== */
-/* 6. PHOTOGRAPHY SECTION */
+/* 6. BLOGS SECTION */
+/* ====================================== */
+.blogs-section {
+  padding: 6rem 2rem;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding-left: max(2rem, env(safe-area-inset-left));
+  padding-right: max(2rem, env(safe-area-inset-right));
+}
+
+.blogs-section .section-header {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blog-card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary);
+}
+
+.blog-card:hover::before {
+  opacity: 1;
+}
+
+.blog-card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-card h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-primary);
+}
+
+.blog-card p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-card .blog-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.blog-card .blog-link:hover {
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .blogs-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .blogs-section .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .blogs-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .blog-card {
+    padding: 1.5rem;
+  }
+
+  .blog-card h3 {
+    font-size: 1rem;
+  }
+
+  .blog-card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blogs-section {
+    padding: 3rem 1rem;
+  }
+
+  .blog-card {
+    padding: 1.25rem;
+  }
+}
+
+/* ====================================== */
+/* 7. PHOTOGRAPHY SECTION */
 /* ====================================== */
 .photography-section {
     padding: 6rem 2rem;
@@ -797,7 +926,7 @@ body {
 }
 
 /* ====================================== */
-/* 7. SUBSCRIBE SECTION */
+/* 8. SUBSCRIBE SECTION */
 /* ====================================== */
 .subscribe-section {
   padding: 6rem 2rem;
@@ -887,7 +1016,7 @@ body {
 }
 
 /* ====================================== */
-/* 7. FOOTER */
+/* 9. FOOTER */
 /* ====================================== */
 .footer {
   background-color: var(--color-surface);
@@ -966,7 +1095,7 @@ body {
 }
 
 /* ====================================== */
-/* 8. MOBILE MENU */
+/* 10. MOBILE MENU */
 /* ====================================== */
 .mobile-nav {
   position: fixed;
@@ -1034,7 +1163,7 @@ body {
 }
 
 /* ====================================== */
-/* 9. RESPONSIVE DESIGN */
+/* 11. RESPONSIVE DESIGN */
 /* ====================================== */
 @media (max-width: 1024px) {
   .hero-glow {
