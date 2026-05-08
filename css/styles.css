@@ -7,6 +7,8 @@
   --color-primary: #ff0033;
   --color-primary-hover: #cc0029;
   --color-primary-light: rgba(255, 0, 51, 0.08);
+  --color-instagram: #e4405f;
+  --color-instagram-hover: #c93553;
   --color-text-primary: #0f0f0f;
   --color-text-secondary: #606060;
   --color-border: #e5e5e5;
@@ -30,6 +32,8 @@ html.dark {
   --color-primary: #ff0033;
   --color-primary-hover: #ff2b52;
   --color-primary-light: rgba(255, 0, 51, 0.15);
+  --color-instagram: #e4405f;
+  --color-instagram-hover: #ff6b8a;
   --color-text-primary: #f1f1f1;
   --color-text-secondary: #aaaaaa;
   --color-border: #272727;
@@ -347,6 +351,17 @@ body {
   background-color: var(--color-primary-hover);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(255, 0, 51, 0.35);
+}
+
+.btn-instagram {
+  background-color: var(--color-instagram);
+  color: white;
+}
+
+.btn-instagram:hover {
+  background-color: var(--color-instagram-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(228, 64, 95, 0.35);
 }
 
 .btn-secondary {
